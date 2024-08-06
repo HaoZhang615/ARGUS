@@ -77,6 +77,7 @@ def run_ocr_and_gpt_processing(temp_file_path, document, data_container):
     try:
         return run_ocr_and_gpt(temp_file_path, document['model_input']['model_prompt'], 
                                document['model_input']['example_schema'], document, data_container)
+    
     except Exception as e:
         document['errors'].append(f"OCR/GPT processing error: {str(e)}")
         update_state(document, data_container, 'ocr_completed', False)

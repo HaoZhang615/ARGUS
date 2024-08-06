@@ -13,12 +13,18 @@ client = document_analysis_client = DocumentIntelligenceClient(endpoint=config["
 client.mode = "page"
 
 
-def get_ocr_results(file_path: str, output: str = "markdown") -> AnalyzeResult:
+def get_ocr_results(file_path: str, output: str = "markdown", high_resolution: bool = False) -> AnalyzeResult:
     with open(file_path, "rb") as f:
-        poller = client.begin_analyze_document("prebuilt-layout",
-                                               analyze_request=f, 
-                                               content_type="application/octet-stream",
+        if high_resolution == True:
+            poller = client.begin_analyze_document("prebuilt-layout",
+                                            analyze_request=f, 
+                                            content_type="application/octet-stream",
                                             #    features=["keyValuePairs"],
-                                               features=[DocumentAnalysisFeature.OCR_HIGH_RESOLUTION],
-                                               output_content_format=output)
+                                            features=[DocumentAnalysisFeature.OCR_HIGH_RESOLUTION],
+                                            output_content_format=output)
+        else:
+            poller = client.begin_analyze_document("prebuilt-layout",
+                                            analyze_request=f, 
+                                            content_type="application/octet-stream",
+                                            output_content_format=output)
     return poller.result()

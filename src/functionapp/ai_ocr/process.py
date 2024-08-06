@@ -140,7 +140,7 @@ def run_ocr_and_gpt(file_to_ocr: str, prompt: str, json_schema: str, document: d
 
     # Get OCR results
     ocr_start_time = datetime.now()
-    ocr_result = get_ocr_results(file_to_ocr)
+    ocr_result = get_ocr_results(file_to_ocr, high_resolution=config.high_resolution)
     ocr_processing_time = (datetime.now() - ocr_start_time).total_seconds()
     processing_times['ocr_processing_time'] = ocr_processing_time
     
