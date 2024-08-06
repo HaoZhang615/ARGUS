@@ -1,11 +1,11 @@
 from azure.ai.documentintelligence import DocumentIntelligenceClient
-from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeResult, DocumentAnalysisFeature
 from azure.core.credentials import AzureKeyCredential
 
 from ai_ocr.azure.config import get_config
 
 config = get_config()
-kwargs = {"api_version": "2023-10-31-preview"}
+kwargs = {"api_version": "2024-02-29-preview"}
 client = document_analysis_client = DocumentIntelligenceClient(endpoint=config["doc_intelligence_endpoint"],
                                                                credential=AzureKeyCredential(config["doc_intelligence_key"]),
                                                                headers={"solution":"ARGUS-1.0"},
@@ -16,8 +16,9 @@ client.mode = "page"
 def get_ocr_results(file_path: str, output: str = "markdown") -> AnalyzeResult:
     with open(file_path, "rb") as f:
         poller = client.begin_analyze_document("prebuilt-layout",
-                                               analyze_request=f,
+                                               analyze_request=f, 
                                                content_type="application/octet-stream",
                                             #    features=["keyValuePairs"],
+                                               features=[DocumentAnalysisFeature.OCR_HIGH_RESOLUTION],
                                                output_content_format=output)
     return poller.result()
