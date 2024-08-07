@@ -3,7 +3,6 @@ from azure.storage.blob import BlobServiceClient
 from azure.cosmos import CosmosClient
 import streamlit as st
 
-
 def upload_files_to_blob(files, dataset_name):
     # Connect to the Blob storage account
     blob_service_client = BlobServiceClient.from_connection_string(st.session_state.blob_conn_str)
@@ -71,8 +70,8 @@ def process_files_tab():
     with col2:
         # Allow the user to upload files to the selected dataset in Blob storage
         uploaded_files = st.file_uploader("Choose files to attach to the request", 
-                          type=['pdf', 'jpeg', 'jpg', 'png', 'bmp', 'tiff', 'heif', 'docx', 'xlsx', 'pptx', 'html'], 
-                          accept_multiple_files=True)
+                        type=['pdf', 'jpeg', 'jpg', 'png', 'bmp', 'tiff', 'heif', 'docx', 'xlsx', 'pptx', 'html'], 
+                        accept_multiple_files=True)
 
         if st.button('Submit'):
             if uploaded_files:

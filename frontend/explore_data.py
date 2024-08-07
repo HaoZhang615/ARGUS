@@ -293,3 +293,4 @@ def explore_data_tab():
 
     else:
         st.error('Failed to fetch data or no data found. If you submitted files for processing, please wait a few seconds and refresh the page.')
+

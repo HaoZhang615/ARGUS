@@ -1,0 +1,27 @@
+credentials:
+  usernames:
+    ibm:
+      email: ibm@example.com
+      failed_login_attempts: 0 # Will be managed automatically
+      logged_in: false # Will be managed automatically
+      name: IBM
+      password: $2b$12$qBN/xKW.CuoLEAYgMvRineMrxZsYg6LeN3tuwt.KodsQUyEAlz4bu # Will be hashed automatically
+    nestle:
+      email: nestle@example.com
+      failed_login_attempts: 0 # Will be managed automatically
+      logged_in: false # Will be managed automatically
+      name: Nestle
+      password: $2b$12$8eKlNijXmE00PCbKSxqTvOxEjYoysr0HOjycVRADR3o/vhfVYNteS # Will be hashed automatically
+    microsoft:
+      email: microsoft@example.com # Must be string
+      failed_login_attempts: 0 # Will be managed automatically
+      logged_in: false # Will be managed automatically
+      name: Microsoft
+      password: $2b$12$MpJSjqSZX1wHxuyij5dfZeTu0UfG57jDKs3HEXWHsMhQs/LmAbm1u # Will be hashed automatically
+cookie:
+  expiry_days: 1
+  key: some_signature_key # Must be string
+  name: some_cookie_name
+pre-authorized:
+  emails:
+  - haozhang2@microsoft.com
